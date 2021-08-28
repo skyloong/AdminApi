@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IServices;
+using Microsoft.AspNetCore.Mvc;
 using Model.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,11 @@ namespace Api.Controllers
     [Route("api/[controller]/[action]")]
     public class HomeController : Controller
     {
+        private readonly IAutoFacTestService _autoFacTestService;
+        public HomeController(IAutoFacTestService autoFacTestService)
+        {
+            _autoFacTestService = autoFacTestService;
+        }
         /// <summary>
         /// fuck you
         /// </summary>
@@ -18,7 +24,7 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Fuck(SwaggerTest test)
         {
-            return Ok();
+            return Ok(_autoFacTestService.Fuck("you"));
         }
     }
 }

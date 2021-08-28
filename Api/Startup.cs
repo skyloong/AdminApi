@@ -1,3 +1,4 @@
+using Autofac;
 using Common.Helper;
 using Extensions.Middlewares;
 using Extensions.ServiceExtensions;
@@ -31,6 +32,11 @@ namespace Api
             services.AddSingleton(new Appsettings(Configuration));
             services.AddSwaggerSetup();
             services.AddControllers();
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new AutofacModuleRegister());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
