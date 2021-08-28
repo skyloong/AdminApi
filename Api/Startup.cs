@@ -1,3 +1,6 @@
+using Common.Helper;
+using Extensions.Middlewares;
+using Extensions.ServiceExtensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Api
@@ -24,6 +28,8 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(new Appsettings(Configuration));
+            services.AddSwaggerSetup();
             services.AddControllers();
         }
 
@@ -34,6 +40,7 @@ namespace Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwaggerMildd(() => GetType().GetTypeInfo().Assembly.GetManifestResourceStream("Api.index.html"));
 
             app.UseRouting();
 

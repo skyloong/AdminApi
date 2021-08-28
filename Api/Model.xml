@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Model</name>
+    </assembly>
+    <members>
+        <member name="P:Model.Models.SwaggerTest.fuck">
+            <summary>
+            fuck you
+            </summary>
+        </member>
+    </members>
+</doc>
