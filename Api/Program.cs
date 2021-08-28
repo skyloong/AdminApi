@@ -1,12 +1,8 @@
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace Api
 {
@@ -22,7 +18,17 @@ namespace Api
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                    .ConfigureLogging((hostingContext, builder) =>
+                    {
+                        //过滤掉系统默认的一些日志
+                        builder.AddFilter("System", LogLevel.Error);
+                        builder.AddFilter("Microsoft", LogLevel.Error);
+
+                        //可配置文件
+                        var path = Path.Combine(Directory.GetCurrentDirectory(), "Log4net.config");
+                        builder.AddLog4Net(path);
+                    });
                 });
     }
 }

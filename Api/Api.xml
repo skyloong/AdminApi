@@ -10,5 +10,23 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Api.Filter.GlobalExceptionsFilter.WriteLog(System.String,System.Exception)">
+            <summary>
+            自定义返回格式
+            </summary>
+            <param name="throwMsg"></param>
+            <param name="ex"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Api.Filter.JsonErrorResponse.Message">
+            <summary>
+            生产环境的消息
+            </summary>
+        </member>
+        <member name="P:Api.Filter.JsonErrorResponse.DevelopmentMessage">
+            <summary>
+            开发环境的消息
+            </summary>
+        </member>
     </members>
 </doc>

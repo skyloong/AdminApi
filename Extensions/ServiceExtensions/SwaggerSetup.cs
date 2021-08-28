@@ -37,7 +37,6 @@ namespace Extensions.ServiceExtensions
                 //这个就是Model层的xml文件名
                 var xmlModelPath = Path.Combine(basePath, "Model.xml");
                 c.IncludeXmlComments(xmlModelPath);
-                Console.WriteLine(basePath + "Model.xml");
             });
         }
     }

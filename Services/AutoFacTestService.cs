@@ -1,4 +1,5 @@
-﻿using IRepository;
+﻿using Common.Helper;
+using IRepository;
 using IServices;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,15 @@ namespace Services
         }
         public string Fuck(string fuck)
         {
-            return _autofacTestRepository.Fuck() + fuck;
+            try
+            {
+                throw new Exception("发生错误");
+                return _autofacTestRepository.Fuck() + fuck;
+            } catch (Exception e)
+            {
+                LogHelper.Error("错误", e);
+            }
+            return "";
         }
     }
 }

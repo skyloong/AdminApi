@@ -1,3 +1,4 @@
+using Api.Filter;
 using Autofac;
 using Common.Helper;
 using Extensions.Middlewares;
@@ -31,7 +32,11 @@ namespace Api
         {
             services.AddSingleton(new Appsettings(Configuration));
             services.AddSwaggerSetup();
-            services.AddControllers();
+            services.AddControllers(o =>
+            {
+                // 全局异常过滤
+                o.Filters.Add(typeof(GlobalExceptionsFilter));
+            });
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
