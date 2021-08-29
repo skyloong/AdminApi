@@ -1,18 +1,20 @@
 ﻿using Common.Helper;
 using IRepository;
 using IServices;
+using Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Services
 {
-    public class AutoFacTestService : IAutoFacTestService
+    public class AutoFacTestService : BaseService<SwaggerTest>, IAutoFacTestService
     {
         private readonly IAutofacTestRepository _autofacTestRepository;
         public AutoFacTestService(IAutofacTestRepository autofacTestRepository)
         {
             _autofacTestRepository = autofacTestRepository;
+            base.BaseDal = autofacTestRepository;
         }
         public string Fuck(string fuck)
         {

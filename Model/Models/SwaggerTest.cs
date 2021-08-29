@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Model.Models.Common;
+using SqlSugar;
 
 namespace Model.Models
 {
-    public class SwaggerTest
+    [SugarTable("SwaggerTest", IsDisabledUpdateAll = true)]
+    public class SwaggerTest : GUIDBaseModel
     {
         /// <summary>
         /// fuck you

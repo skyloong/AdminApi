@@ -14,4 +14,8 @@
     <Folder Include="Request\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="SqlSugarCore" Version="5.0.3.8" />
+  </ItemGroup>
+
 </Project>
