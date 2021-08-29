@@ -31,6 +31,7 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(new Appsettings(Configuration));
+            services.AddCasbinSetup();
             services.AddAutoMapperSetup();
             services.AddSqlsugarSetup();
             services.AddSwaggerSetup();

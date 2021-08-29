@@ -7,6 +7,11 @@ namespace Model.Models.Common
 {
     public class AutoIncrementBaseModel
     {
+        public AutoIncrementBaseModel()
+        {
+            CreatedAt = UpdatedAt = DateTime.Now;
+        }
+
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public string Id { get; set; }
 

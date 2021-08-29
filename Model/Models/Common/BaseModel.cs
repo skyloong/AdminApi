@@ -7,10 +7,21 @@ namespace Model.Models.Common
 {
     public class GUIDBaseModel
     {
+        public GUIDBaseModel()
+        {
+            CreatedAt = UpdatedAt = DateTime.Now;
+        }
+
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+
+        public string NewGUID()
+        {
+            Id = Guid.NewGuid().ToString();
+            return Id;
+        }
     }
 }
