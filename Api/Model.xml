@@ -9,5 +9,50 @@
             fuck you
             </summary>
         </member>
+        <member name="P:Model.Models.System.AdminUser.LocalCityId">
+            <summary>
+            所属地市
+            </summary>
+        </member>
+        <member name="P:Model.Models.System.AdminUser.DeptId">
+            <summary>
+            部门Id
+            </summary>
+        </member>
+        <member name="P:Model.Models.System.AdminUser.ModifyPwdDate">
+            <summary>
+            最后一次修改密码时间
+            </summary>
+        </member>
+        <member name="P:Model.Models.System.AdminUser.LastLoginDate">
+            <summary>
+            上一次登录时间
+            </summary>
+        </member>
+        <member name="P:Model.Models.System.AdminUser.Pwd">
+            <summary>
+            明码
+            </summary>
+        </member>
+        <member name="P:Model.Models.System.AdminUser.IsUse">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:Model.Models.System.Menu.IsAuthorize">
+            <summary>
+            是否需要授权,true需要，false不需要
+            </summary>
+        </member>
+        <member name="P:Model.Models.System.Role.Description">
+            <summary>
+            角色说明
+            </summary>
+        </member>
+        <member name="P:Model.Models.System.Role.IsUse">
+            <summary>
+            是否启用
+            </summary>
+        </member>
     </members>
 </doc>

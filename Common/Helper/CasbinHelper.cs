@@ -162,6 +162,26 @@ namespace Common.Helper
         }
 
         /// <summary>
+        /// 给角色添加按钮权限
+        /// </summary>
+        /// <param name="roleId">如：角色Id</param>
+        /// <param name="buttonIds">如：/foo/1</param>
+        /// <returns></returns>
+        public bool AddPermissionForUser(string roleId, List<string> buttonIds)
+        {
+            var options = new DbContextOptionsBuilder<CasbinDbContext<int>>()
+               .UseSqlServer(_connection)
+               .Options;
+            using (var context = new CasbinDbContext<int>(options))
+            {
+                var efCoreAdapter = new EFCoreAdapter<int>(context);
+                var e = new Enforcer(_confPath, efCoreAdapter);
+                var result = e.AddPermissionForUser(roleId, buttonIds);
+                return result;
+            }
+        }
+
+        /// <summary>
         /// 给角色添加菜单权限
         /// </summary>
         /// <param name="roleId"></param>
@@ -176,7 +196,7 @@ namespace Common.Helper
             {
                 var efCoreAdapter = new EFCoreAdapter<int>(context);
                 var e = new Enforcer(_confPath, efCoreAdapter);
-                var result = e.AddPermissionForUser(roleId, menudId, "GET");
+                var result = e.AddPermissionForUser(roleId, menudId);
                 return result;
             }
         }
@@ -186,9 +206,8 @@ namespace Common.Helper
         /// </summary>
         /// <param name="roleId">如：角色Id</param>
         /// <param name="buttonId">如：/foo/1</param>
-        /// <param name="method">如：POST</param>
         /// <returns></returns>
-        public bool AddButtonForUser(string roleId, string buttonId, string method)
+        public bool AddButtonForUser(string roleId, string buttonId)
         {
             var options = new DbContextOptionsBuilder<CasbinDbContext<int>>()
                .UseSqlServer(_connection)
@@ -197,7 +216,7 @@ namespace Common.Helper
             {
                 var efCoreAdapter = new EFCoreAdapter<int>(context);
                 var e = new Enforcer(_confPath, efCoreAdapter);
-                var result = e.AddPermissionForUser(roleId, buttonId, method);
+                var result = e.AddPermissionForUser(roleId, buttonId);
                 return result;
             }
         }

@@ -31,6 +31,7 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(new Appsettings(Configuration));
+            services.AddJwtAuthenticationSetup();
             services.AddCasbinSetup();
             services.AddAutoMapperSetup();
             services.AddSqlsugarSetup();
@@ -54,10 +55,11 @@ namespace Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            //此处没有自定义index.html
             app.UseSwaggerMildd(() => GetType().GetTypeInfo().Assembly.GetManifestResourceStream("Api.index.html"));
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
