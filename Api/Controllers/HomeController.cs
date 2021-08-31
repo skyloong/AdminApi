@@ -25,6 +25,7 @@ namespace Api.Controllers
         [HttpPost]
         public IActionResult Fuck(SwaggerTest test)
         {
+            throw new Exception("fuck");
             return Ok(_autoFacTestService.Fuck("you"));
         }
 
@@ -36,7 +37,7 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetUserId(string userId)
+        public IActionResult GetUserId()
         {
             return Success(UserId);
         }

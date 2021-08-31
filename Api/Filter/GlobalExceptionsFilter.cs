@@ -37,7 +37,6 @@ namespace Api.Filter
                 json.DevelopmentMessage = context.Exception.StackTrace;
             }*/
             context.Result = new InternalServerErrorObjectResult(json);
-
             //采用log4net 进行错误日志记录
             _loggerHelper.LogError(json.Message + WriteLog(json.Message, context.Exception));
         }

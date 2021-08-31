@@ -18,8 +18,8 @@ namespace Common.Helper
         /// <returns></returns>
         public static string IssueJwt(string userId)
         {
-            string iss = Appsettings.app(new string[] { "Audience", "Issuer" });
-            string aud = Appsettings.app(new string[] { "Audience", "Audience" });
+            var iss = Appsettings.app(new string[] { "JWTToken", "iss" });
+            var aud = Appsettings.app(new string[] { "JWTToken", "aud" });
             var secret = Appsettings.app(new string[] { "JWTToken", "sign" });
             //string secret = AppSecretConfig.Audience_Secret_String;
 

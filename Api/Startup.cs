@@ -31,14 +31,16 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(new Appsettings(Configuration));
-            services.AddJwtAuthenticationSetup();
             services.AddCasbinSetup();
             services.AddAutoMapperSetup();
             services.AddSqlsugarSetup();
             services.AddSwaggerSetup();
+            services.AddJwtAuthenticationSetup();
+
             services.AddControllers(o =>
             {
                 // 全局异常过滤
+                o.Filters.Add(typeof(PermissionFilter));
                 o.Filters.Add(typeof(GlobalExceptionsFilter));
             });
         }
@@ -57,9 +59,10 @@ namespace Api
             }
             //此处没有自定义index.html
             app.UseSwaggerMildd(() => GetType().GetTypeInfo().Assembly.GetManifestResourceStream("Api.index.html"));
-
             app.UseRouting();
+            // 先开启认证
             app.UseAuthentication();
+            // 然后是授权中间件
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

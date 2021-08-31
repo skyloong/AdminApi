@@ -13,7 +13,7 @@ namespace Common.Helper
         private readonly string _confPath;
         public CasbinHelper(string connection, string confPath)
         {
-            _connection = confPath;
+            _connection = connection;
             _confPath = confPath;
 
             var options = new DbContextOptionsBuilder<CasbinDbContext<int>>()

@@ -16,7 +16,6 @@ namespace Extensions.ServiceExtensions
         {
             var iss = Appsettings.app(new string[] { "JWTToken", "iss" });
             var aud = Appsettings.app(new string[] { "JWTToken", "aud" });
-            //读取配置文件
             var sign = Appsettings.app(new string[] { "JWTToken", "sign" });
             var keyByteArray = Encoding.UTF8.GetBytes(sign);
             var signingKey = new SymmetricSecurityKey(keyByteArray);
@@ -36,7 +35,7 @@ namespace Extensions.ServiceExtensions
                 RequireExpirationTime = true,
             };
 
-            services.AddAuthentication("Bearer")
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(o =>
             {
                 o.TokenValidationParameters = tokenValidationParameters;
