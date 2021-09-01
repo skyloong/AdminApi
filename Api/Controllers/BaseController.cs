@@ -1,4 +1,5 @@
-﻿using Common.Helper;
+﻿using Common.AppConfig;
+using Common.Helper;
 using Microsoft.AspNetCore.Mvc;
 using Model.ViewModels.Result;
 using System;
@@ -26,7 +27,7 @@ namespace Api.Controllers
             var claims = User.Claims;
             foreach (var claim in claims)
             {
-                if (claim.Type == "UserId")
+                if (claim.Type == TokenClaims.UserId)
                 {
                     return claim.Value.ObjToInt();
                 }

@@ -24,6 +24,27 @@ namespace Common.Helper
                 context.Database.EnsureCreated();
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="buttonId"></param>
+        /// <returns></returns>
+        public bool HasPermissionForUser(string userId, string buttonId)
+        {
+            var options = new DbContextOptionsBuilder<CasbinDbContext<int>>()
+               .UseSqlServer(_connection)
+               .Options;
+            using (var context = new CasbinDbContext<int>(options))
+            {
+                var efCoreAdapter = new EFCoreAdapter<int>(context);
+                var e = new Enforcer(_confPath, efCoreAdapter);
+                var result = e.HasPermissionForUser(userId, buttonId);
+                return result;
+            }
+        }
+
         /// <summary>
         /// 给用户添加角色
         /// </summary>
@@ -167,7 +188,7 @@ namespace Common.Helper
         /// <param name="roleId">如：角色Id</param>
         /// <param name="buttonIds">如：/foo/1</param>
         /// <returns></returns>
-        public bool AddPermissionForUser(string roleId, List<string> buttonIds)
+        public bool AddPermissionForRole(string roleId, List<string> buttonIds)
         {
             var options = new DbContextOptionsBuilder<CasbinDbContext<int>>()
                .UseSqlServer(_connection)
@@ -207,7 +228,7 @@ namespace Common.Helper
         /// <param name="roleId">如：角色Id</param>
         /// <param name="buttonId">如：/foo/1</param>
         /// <returns></returns>
-        public bool AddButtonForUser(string roleId, string buttonId)
+        public bool AddButtonForRole(string roleId, string buttonId)
         {
             var options = new DbContextOptionsBuilder<CasbinDbContext<int>>()
                .UseSqlServer(_connection)
@@ -227,7 +248,7 @@ namespace Common.Helper
         /// <param name="url"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        public bool Enforce(string roleId, string url, string method)
+        public bool Enforce(string roleId, string url)
         {
             var options = new DbContextOptionsBuilder<CasbinDbContext<int>>()
                .UseSqlServer(_connection)
@@ -236,7 +257,7 @@ namespace Common.Helper
             {
                 var efCoreAdapter = new EFCoreAdapter<int>(context);
                 var e = new Enforcer(_confPath, efCoreAdapter);
-                return e.Enforce(roleId, url, method);
+                return e.Enforce(roleId, url);
             }
         }
     }
