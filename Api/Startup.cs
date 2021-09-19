@@ -33,6 +33,7 @@ namespace Api
             services.AddSingleton(new Appsettings(Configuration));
             services.AddCasbinSetup();
             services.AddAutoMapperSetup();
+            services.AddCorsSetup();
             services.AddSqlsugarSetup();
             services.AddSwaggerSetup();
             services.AddJwtAuthenticationSetup();
@@ -57,9 +58,11 @@ namespace Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles();
             //此处没有自定义index.html
             app.UseSwaggerMildd(() => GetType().GetTypeInfo().Assembly.GetManifestResourceStream("Api.index.html"));
             app.UseRouting();
+            app.UseCors();
             // 先开启认证
             app.UseAuthentication();
             // 然后是授权中间件
