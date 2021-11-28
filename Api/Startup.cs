@@ -40,8 +40,8 @@ namespace Api
 
             services.AddControllers(o =>
             {
-                // 全局异常过滤
                 o.Filters.Add(typeof(PermissionFilter));
+                // 全局异常过滤
                 o.Filters.Add(typeof(GlobalExceptionsFilter));
             });
         }

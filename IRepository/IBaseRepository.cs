@@ -6,5 +6,6 @@ namespace IRepository
 {
     public interface IBaseRepository<Tentity> where Tentity : class
     {
+        bool Insert(IEnumerable<Tentity> entities);
     }
 }

@@ -23,5 +23,10 @@ namespace Repository
             _unitOfWork = unitOfWork;
             _db = unitOfWork.GetDbClient();
         }
+
+        public bool Insert(IEnumerable<TEntity> entities)
+        {
+            return _db.Insertable<TEntity>(entities).ExecuteCommand() > 0;
+        }
     }
 }

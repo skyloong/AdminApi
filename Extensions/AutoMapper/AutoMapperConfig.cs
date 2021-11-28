@@ -12,6 +12,7 @@ namespace Extensions.AutoMapper
             return new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new CustomProfile());
+                cfg.AddProfile(new ExcelProfile());
             });
         }
     }
