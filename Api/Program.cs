@@ -2,6 +2,7 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System;
 using System.IO;
 
 namespace Api
@@ -26,7 +27,8 @@ namespace Api
                         builder.AddFilter("Microsoft", LogLevel.Error);
 
                         //ø…≈‰÷√Œƒº˛
-                        var path = Path.Combine(Directory.GetCurrentDirectory(), "Log4net.config");
+                        //var path = Path.Combine(Directory.GetCurrentDirectory(), "Log4net.config");
+                        var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"config{Path.DirectorySeparatorChar}Log4net.config");
                         builder.AddLog4Net(path);
                     });
                 });
