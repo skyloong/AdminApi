@@ -3,21 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{7FBF6C48-C66C-4EFF-8EC7-915B86D0D0ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{7FBF6C48-C66C-4EFF-8EC7-915B86D0D0ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{816C2ABB-B915-4C33-B0A7-BD3B0C1D6D5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{816C2ABB-B915-4C33-B0A7-BD3B0C1D6D5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{822DE4DA-B648-485D-91E1-DA4E050E8EE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{822DE4DA-B648-485D-91E1-DA4E050E8EE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IServices", "IServices\IServices.csproj", "{6A78245B-3B85-4DDF-BB06-BEDCD2590D88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IServices", "IServices\IServices.csproj", "{6A78245B-3B85-4DDF-BB06-BEDCD2590D88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{BACCD140-4808-49F7-8DD9-8681B58E73A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{BACCD140-4808-49F7-8DD9-8681B58E73A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRepository", "IRepository\IRepository.csproj", "{C17B1B43-83E2-4675-919C-DAD408CB8568}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IRepository", "IRepository\IRepository.csproj", "{C17B1B43-83E2-4675-919C-DAD408CB8568}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{662CAE76-5B6A-4893-900F-D88E3C8363A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{662CAE76-5B6A-4893-900F-D88E3C8363A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions", "Extensions\Extensions.csproj", "{279A86F2-5C3C-467F-9E0B-427C732AA9DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extensions", "Extensions\Extensions.csproj", "{279A86F2-5C3C-467F-9E0B-427C732AA9DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artisan", "Artisan\Artisan.csproj", "{81E1C8AE-B8AE-41B2-9827-6C0177D6813D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{279A86F2-5C3C-467F-9E0B-427C732AA9DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{279A86F2-5C3C-467F-9E0B-427C732AA9DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{279A86F2-5C3C-467F-9E0B-427C732AA9DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81E1C8AE-B8AE-41B2-9827-6C0177D6813D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81E1C8AE-B8AE-41B2-9827-6C0177D6813D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81E1C8AE-B8AE-41B2-9827-6C0177D6813D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81E1C8AE-B8AE-41B2-9827-6C0177D6813D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

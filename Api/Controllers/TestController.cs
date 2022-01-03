@@ -22,6 +22,11 @@ namespace Api.Controllers
             _appEnvironment = appEnvironment;
         }
         [HttpGet]
+        public IActionResult Index()
+        {
+            return Ok();
+        }
+        [HttpGet]
         public IActionResult Add()
         {
             return Ok();

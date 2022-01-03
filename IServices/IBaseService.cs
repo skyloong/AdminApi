@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace IServices
@@ -12,6 +13,10 @@ namespace IServices
 
         #region 数据库插入操作
         bool Insert(IEnumerable<TEntity> entities);
+        #endregion
+
+        #region 数据库查询
+        TEntity Find(Expression<Func<TEntity, bool>> where);
         #endregion
     }
 }

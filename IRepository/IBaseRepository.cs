@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace IRepository
 {
-    public interface IBaseRepository<Tentity> where Tentity : class
+    public interface IBaseRepository<TEntity> where TEntity : class
     {
-        bool Insert(IEnumerable<Tentity> entities);
+        bool Insert(IEnumerable<TEntity> entities);
+        TEntity Find(Expression<Func<TEntity, bool>> where);
     }
 }

@@ -29,11 +29,6 @@
             上一次登录时间
             </summary>
         </member>
-        <member name="P:Model.Models.System.AdminUser.Pwd">
-            <summary>
-            明码
-            </summary>
-        </member>
         <member name="P:Model.Models.System.AdminUser.IsUse">
             <summary>
             是否启用

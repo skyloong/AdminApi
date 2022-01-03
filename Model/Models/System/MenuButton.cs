@@ -1,10 +1,12 @@
 ﻿using Model.Models.Common;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Model.Models.System
 {
+    [SugarTable("sys_button", IsDisabledUpdateAll = true)]
     public class MenuButton : GUIDBaseModel
     {
         public string MenuId { get; set; }

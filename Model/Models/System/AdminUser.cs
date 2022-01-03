@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using Model.Models.Common;
+using SqlSugar;
 
 namespace Model.Models.System
 {
+    [SugarTable("sys_users", IsDisabledUpdateAll = true)]
     public class AdminUser : GUIDBaseModel
     {
         public string Account { get; set; }
@@ -29,10 +31,6 @@ namespace Model.Models.System
         /// 上一次登录时间
         /// </summary>
         public DateTime? LastLoginDate { get; set; }
-        /// <summary>
-        /// 明码
-        /// </summary>
-        public string Pwd { get; set; }
         /// <summary>
         /// 是否启用
         /// </summary>

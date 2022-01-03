@@ -1,7 +1,9 @@
 ﻿using Common.AppConfig;
 using Common.Helper;
 using IRepository.UnitOfWork;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Model.Models.System;
 using SqlSugar;
@@ -33,19 +35,27 @@ namespace Api.Filter
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
+            var actionDescriptor = context.ActionDescriptor as ControllerActionDescriptor;
+            var allowAnonymous = actionDescriptor.MethodInfo.GetCustomAttributes(typeof(AllowAnonymousAttribute), false).FirstOrDefault();
+            if (allowAnonymous != null)
+            {
+                return;
+            }
             var route = context.RouteData;
             var controllerName = route.Values["controller"].ToString();
+            //var controllerName = actionDescriptor.ControllerName;
             var actionName = route.Values["action"].ToString();
+            //var actionName = actionDescriptor.ActionName;
 
             var userIdToken = context.HttpContext.User.FindFirst(TokenClaims.UserId);
             string userId = string.Empty;
             if (userIdToken != null)
             {
-                userId = userIdToken.ToString();
+                userId = userIdToken.Value.ToString();
             }
             var url = string.Format("/{0}/{1}", controllerName, actionName);
             var buttonId = _db.Queryable<MenuButton>().Where(a => a.Url == url).Select(a => a.Id).First();
-            if (!_casbinHelper.Enforce(userId, buttonId))
+            if (string.IsNullOrEmpty(buttonId) || !_casbinHelper.Enforce(userId, buttonId))
             {
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
                 context.Result = new ContentResult()

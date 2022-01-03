@@ -1,5 +1,6 @@
 ﻿using Common.Helper;
 using IServices;
+using IServices.System;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Model.Models;
@@ -14,9 +15,11 @@ namespace Api.Controllers
     public class HomeController : BaseController
     {
         private readonly IAutoFacTestService _autoFacTestService;
-        public HomeController(IAutoFacTestService autoFacTestService)
+        private readonly IUsersService _usersService;
+        public HomeController(IAutoFacTestService autoFacTestService, IUsersService usersService)
         {
             _autoFacTestService = autoFacTestService;
+            _usersService = usersService;
         }
         /// <summary>
         /// fuck you
@@ -31,9 +34,10 @@ namespace Api.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public IActionResult Login(string userId)
+        public IActionResult Login(string usercode)
         {
-            return Success(JwtHelper.IssueJwt(userId));
+            var userId = _usersService.Find(usercode)?.Id;
+            return userId == null ? NotFound("未找到该用户") : Success(JwtHelper.IssueJwt(userId));
         }
 
         [HttpGet]

@@ -1,10 +1,12 @@
 ﻿using Model.Models.Common;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Model.Models.System
 {
+    [SugarTable("sys_roles", IsDisabledUpdateAll = true)]
     public class Role : GUIDBaseModel
     {
         public string Name { get; set; }

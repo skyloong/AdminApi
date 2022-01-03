@@ -3,6 +3,7 @@ using IRepository.UnitOfWork;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Repository
@@ -27,6 +28,13 @@ namespace Repository
         public bool Insert(IEnumerable<TEntity> entities)
         {
             return _db.Insertable<TEntity>(entities).ExecuteCommand() > 0;
+        }
+
+        public TEntity Find(Expression<Func<TEntity, bool>> where)
+        {
+            return _db.Queryable<TEntity>()
+                .Where(where)
+                .First();
         }
     }
 }
