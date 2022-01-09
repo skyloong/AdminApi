@@ -33,6 +33,13 @@ namespace Artisan.Seed.System
                     Icon = "",
                     Url = "",
                 });
+                menus.Add(new Menu
+                {
+                    Id = "5E7242E6-C75E-4D05-B31D-800692B0C9BE",
+                    Name = "按钮列表",
+                    Icon = "",
+                    Url = "/home/getbuttons",
+                });
                 context.AddRange(menus);
                 context.SaveChanges();
             }

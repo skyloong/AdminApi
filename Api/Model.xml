@@ -39,6 +39,26 @@
             是否需要授权,true需要，false不需要
             </summary>
         </member>
+        <member name="P:Model.Models.System.MenuButton.Url">
+            <summary>
+            接口url
+            </summary>
+        </member>
+        <member name="P:Model.Models.System.MenuButton.FrontUrl">
+            <summary>
+            前端URL，如果有
+            </summary>
+        </member>
+        <member name="P:Model.Models.System.MenuButton.Action">
+            <summary>
+            前后约定的，如Add、Delete等
+            </summary>
+        </member>
+        <member name="P:Model.Models.System.MenuButton.Icon">
+            <summary>
+            图标，如果有
+            </summary>
+        </member>
         <member name="P:Model.Models.System.Role.Description">
             <summary>
             角色说明

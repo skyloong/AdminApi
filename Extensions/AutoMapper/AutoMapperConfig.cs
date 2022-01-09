@@ -13,6 +13,7 @@ namespace Extensions.AutoMapper
             {
                 cfg.AddProfile(new CustomProfile());
                 cfg.AddProfile(new ExcelProfile());
+                cfg.AddProfile(new SysProfile());
             });
         }
     }

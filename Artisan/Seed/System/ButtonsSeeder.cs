@@ -40,6 +40,20 @@ namespace Artisan.Seed.System
                     Url = "/test/export",
                     MenuId = "0109046E-BC29-4CCB-B972-DF51A6F85D39"
                 });
+                buttons.Add(new MenuButton
+                {
+                    Id = "8FBFA317-8E4B-4492-8112-5FCACDB715E4",
+                    Name = "导出",
+                    Url = "/test/export",
+                    MenuId = "5E7242E6-C75E-4D05-B31D-800692B0C9BE"
+                });
+                buttons.Add(new MenuButton
+                {
+                    Id = "5BC13EF0-E5E3-40CE-9764-B74FF968EF00",
+                    Name = "删除",
+                    Url = "/test/delete",
+                    MenuId = "5E7242E6-C75E-4D05-B31D-800692B0C9BE"
+                });
                 context.Buttons.AddRange(buttons);
                 context.SaveChanges();
             }

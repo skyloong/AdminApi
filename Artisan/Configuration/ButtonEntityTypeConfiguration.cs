@@ -31,6 +31,18 @@ namespace Artisan.Configuration
             builder.Property(a => a.Url)
                 .HasMaxLength(500)
                 .IsRequired();
+            builder.Property(a => a.FrontUrl)
+                .HasMaxLength(500)
+                .IsRequired()
+                .HasDefaultValue("");
+            builder.Property(a => a.Action)
+                .HasMaxLength(20)
+                .IsRequired()
+                .HasDefaultValue("");
+            builder.Property(a => a.Icon)
+                .HasMaxLength(50)
+                .IsRequired()
+                .HasDefaultValue("");
             builder.Property(a => a.Sort);
             builder.Property(a => a.Description)
                 .IsRequired()

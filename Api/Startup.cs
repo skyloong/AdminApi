@@ -1,6 +1,7 @@
 using Api.Filter;
 using Autofac;
 using Common.Helper;
+using Common.TypeMapper;
 using Extensions.Middlewares;
 using Extensions.ServiceExtensions;
 using Microsoft.AspNetCore.Builder;

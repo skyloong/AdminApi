@@ -21,6 +21,14 @@ namespace Api.Controllers
             }
         }
 
+        protected string Route
+        {
+            get
+            {
+                return $"/{ControllerContext.ActionDescriptor.ControllerName.ToLower()}/{ControllerContext.ActionDescriptor.ActionName.ToLower()}";
+            }
+        }
+
         [ApiExplorerSettings(IgnoreApi = true)]
         protected int GetUserId()
         {
