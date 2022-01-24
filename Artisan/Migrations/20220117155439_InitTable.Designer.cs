@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Artisan.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220105145531_ModifySysMenu")]
-    partial class ModifySysMenu
+    [Migration("20220117155439_InitTable")]
+    partial class InitTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -141,6 +141,12 @@ namespace Artisan.Migrations
                         .HasDefaultValue((byte)1)
                         .HasComment("是否需要授权");
 
+                    b.Property<byte>("IsGroup")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint")
+                        .HasDefaultValue((byte)0)
+                        .HasComment("是否是父节点");
+
                     b.Property<byte>("IsUse")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("tinyint")
@@ -158,6 +164,11 @@ namespace Artisan.Migrations
                         .HasColumnType("nvarchar(36)")
                         .HasDefaultValue("");
 
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
                     b.Property<int>("Sort")
                         .HasColumnType("int");
 
@@ -173,7 +184,7 @@ namespace Artisan.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("sys_menu");
+                    b.ToTable("sys_menus");
                 });
 
             modelBuilder.Entity("Model.Models.System.MenuButton", b =>
@@ -247,7 +258,7 @@ namespace Artisan.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("sys_button");
+                    b.ToTable("sys_buttons");
                 });
 
             modelBuilder.Entity("Model.Models.System.Role", b =>

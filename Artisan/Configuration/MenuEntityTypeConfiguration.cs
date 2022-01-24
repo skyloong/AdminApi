@@ -11,7 +11,7 @@ namespace Artisan.Configuration
     {
         public void Configure(EntityTypeBuilder<Menu> builder)
         {
-            builder.ToTable("sys_menu");
+            builder.ToTable("sys_menus");
             builder.Property(a => a.Id)
                 .HasMaxLength(36)
                 .IsRequired()
@@ -35,12 +35,20 @@ namespace Artisan.Configuration
             builder.Property(a => a.Url)
                 .HasMaxLength(300)
                 .IsRequired();
+            builder.Property(a => a.Path)
+                .HasMaxLength(300)
+                .IsRequired();
             builder.Property(a => a.Sort);
             builder.Property(a => a.IsAuthorize)
                 .HasColumnType("tinyint")
                 .IsRequired()
                 .HasDefaultValue(1)
                 .HasComment("是否需要授权");
+            builder.Property(a => a.IsGroup)
+                .HasColumnType("tinyint")
+                .IsRequired()
+                .HasDefaultValue(0)
+                .HasComment("是否是父节点，前端显示菜单判断用");
             builder.Property(a => a.IsUse)
                 .HasColumnType("tinyint")
                 .IsRequired()

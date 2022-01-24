@@ -9,5 +9,7 @@ namespace IRepository
     {
         bool Insert(IEnumerable<TEntity> entities);
         TEntity Find(Expression<Func<TEntity, bool>> where);
+        bool Update(TEntity entity);
+        bool Delete(TEntity entity);
     }
 }

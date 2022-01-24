@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Model.Models.System
 {
-    [SugarTable("sys_button", IsDisabledUpdateAll = true)]
+    [SugarTable("sys_buttons", IsDisabledUpdateAll = true)]
     public class MenuButton : GUIDBaseModel
     {
         public string MenuId { get; set; }
@@ -20,7 +20,7 @@ namespace Model.Models.System
         /// </summary>
         public string FrontUrl { get; set; }
         /// <summary>
-        /// 前后约定的，如Add、Delete等
+        /// 前后约定的，如Post、Delete等
         /// </summary>
         public string Action { get; set; }
         /// <summary>
@@ -30,5 +30,6 @@ namespace Model.Models.System
         public int Sort { get; set; }
         public string Description { get; set; }
         public bool IsUse { get; set; }
+        public bool IsAuthorize { get; set; }
     }
 }

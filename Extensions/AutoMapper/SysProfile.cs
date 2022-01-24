@@ -20,6 +20,7 @@ namespace Extensions.AutoMapper
                 .ForMember(to => to.Reuqest, opt => opt.MapFrom(source => source.Url));
 
             CreateMap<MenuButton, SysButtonDto>();
+            CreateMap<Menu, SysMenuDto>();
         }
     }
 }

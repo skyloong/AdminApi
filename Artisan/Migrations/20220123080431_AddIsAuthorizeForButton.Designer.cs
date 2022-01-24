@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Artisan.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220103064715_InitTable")]
-    partial class InitTable
+    [Migration("20220123080431_AddIsAuthorizeForButton")]
+    partial class AddIsAuthorizeForButton
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -141,6 +141,12 @@ namespace Artisan.Migrations
                         .HasDefaultValue((byte)1)
                         .HasComment("是否需要授权");
 
+                    b.Property<byte>("IsGroup")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint")
+                        .HasDefaultValue((byte)0)
+                        .HasComment("是否是父节点，前端显示菜单判断用");
+
                     b.Property<byte>("IsUse")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("tinyint")
@@ -158,6 +164,11 @@ namespace Artisan.Migrations
                         .HasColumnType("nvarchar(36)")
                         .HasDefaultValue("");
 
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
                     b.Property<int>("Sort")
                         .HasColumnType("int");
 
@@ -173,7 +184,7 @@ namespace Artisan.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("sys_menu");
+                    b.ToTable("sys_menus");
                 });
 
             modelBuilder.Entity("Model.Models.System.MenuButton", b =>
@@ -183,6 +194,13 @@ namespace Artisan.Migrations
                         .HasMaxLength(36)
                         .HasColumnType("nvarchar(36)")
                         .HasDefaultValueSql("newid()");
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasDefaultValue("");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
@@ -195,6 +213,26 @@ namespace Artisan.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)")
                         .HasDefaultValue("");
+
+                    b.Property<string>("FrontUrl")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
+                        .HasDefaultValue("");
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValue("");
+
+                    b.Property<byte>("IsAuthorize")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint")
+                        .HasDefaultValue((byte)1)
+                        .HasComment("是否需要授权");
 
                     b.Property<byte>("IsUse")
                         .ValueGeneratedOnAdd()
@@ -226,7 +264,7 @@ namespace Artisan.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("sys_button");
+                    b.ToTable("sys_buttons");
                 });
 
             modelBuilder.Entity("Model.Models.System.Role", b =>

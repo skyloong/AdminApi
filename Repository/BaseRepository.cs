@@ -36,5 +36,15 @@ namespace Repository
                 .Where(where)
                 .First();
         }
+
+        public bool Update(TEntity entity)
+        {
+            return _db.Updateable(entity).ExecuteCommand() > 0;
+        }
+
+        public bool Delete(TEntity entity)
+        {
+            return _db.Deleteable(entity).ExecuteCommand() > 0;
+        }
     }
 }

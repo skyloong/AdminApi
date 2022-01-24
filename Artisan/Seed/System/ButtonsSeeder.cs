@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Artisan.Seed.System
 {
@@ -11,48 +12,82 @@ namespace Artisan.Seed.System
         {
             using (var context = new ApplicationDbContext())
             {
+                var menu = context.Menus.Single(a => a.Name == "菜单设置");
                 var buttons = new List<MenuButton>();
                 buttons.Add(new MenuButton
                 {
-                    Id = "8DD5C0BE-3913-42CF-8992-119358B40885",
+                    Id = Guid.NewGuid().ToString(),
                     Name = "新增",
-                    Url = "/test/add",
-                    MenuId = "0109046E-BC29-4CCB-B972-DF51A6F85D39"
+                    Url = "/Menus/Create",
+                    FrontUrl = "",
+                    Action = "post",
+                    Icon = "plus-thick",
+                    MenuId = menu.Id
                 });
                 buttons.Add(new MenuButton
                 {
-                    Id = "DEB403F5-FBED-4026-920D-ED45F3CFEA2B",
+                    Id = Guid.NewGuid().ToString(),
                     Name = "修改",
-                    Url = "/test/edit",
-                    MenuId = "0109046E-BC29-4CCB-B972-DF51A6F85D39"
+                    Url = "/Menus/Edit",
+                    Action = "put",
+                    Icon = "pencil",
+                    MenuId = menu.Id
                 });
                 buttons.Add(new MenuButton
                 {
-                    Id = "5366A9FD-7D0D-49E4-A00C-F394215768AE",
+                    Id = Guid.NewGuid().ToString(),
                     Name = "删除",
-                    Url = "/test/delete",
-                    MenuId = "0109046E-BC29-4CCB-B972-DF51A6F85D39"
+                    Url = "/Menus/Delete",
+                    Action = "delete",
+                    Icon = "delete",
+                    MenuId = menu.Id
                 });
                 buttons.Add(new MenuButton
                 {
-                    Id = "3E968DFB-928E-4F7E-A8AE-267E2417AF38",
-                    Name = "导出",
-                    Url = "/test/export",
-                    MenuId = "0109046E-BC29-4CCB-B972-DF51A6F85D39"
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "查询",
+                    Url = "/Menus/Search",
+                    Action = "get",
+                    Icon = "magnify",
+                    MenuId = menu.Id
+                });
+                var button = context.Menus.Single(a => a.Name == "按钮设置");
+                buttons.Add(new MenuButton
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "新增",
+                    Url = "/Buttons/Create",
+                    FrontUrl = "",
+                    Action = "post",
+                    Icon = "plus-thick",
+                    MenuId = menu.Id
                 });
                 buttons.Add(new MenuButton
                 {
-                    Id = "8FBFA317-8E4B-4492-8112-5FCACDB715E4",
-                    Name = "导出",
-                    Url = "/test/export",
-                    MenuId = "5E7242E6-C75E-4D05-B31D-800692B0C9BE"
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "修改",
+                    Url = "/Buttons/Edit",
+                    Action = "put",
+                    Icon = "pencil",
+                    MenuId = menu.Id
                 });
                 buttons.Add(new MenuButton
                 {
-                    Id = "5BC13EF0-E5E3-40CE-9764-B74FF968EF00",
+                    Id = Guid.NewGuid().ToString(),
                     Name = "删除",
-                    Url = "/test/delete",
-                    MenuId = "5E7242E6-C75E-4D05-B31D-800692B0C9BE"
+                    Url = "/Buttons/Delete",
+                    Action = "delete",
+                    Icon = "delete",
+                    MenuId = menu.Id
+                });
+                buttons.Add(new MenuButton
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "查询",
+                    Url = "/Buttons/Search",
+                    Action = "get",
+                    Icon = "magnify",
+                    MenuId = menu.Id
                 });
                 context.Buttons.AddRange(buttons);
                 context.SaveChanges();

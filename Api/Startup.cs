@@ -1,4 +1,5 @@
 using Api.Filter;
+using Api.Helper;
 using Autofac;
 using Common.Helper;
 using Common.TypeMapper;
@@ -31,6 +32,7 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IPageMapperHelper, PageMapperHelper>();
             services.AddSingleton(new Appsettings(Configuration));
             services.AddCasbinSetup();
             services.AddAutoMapperSetup();
@@ -63,7 +65,7 @@ namespace Api
             //此处没有自定义index.html
             app.UseSwaggerMildd(() => GetType().GetTypeInfo().Assembly.GetManifestResourceStream("Api.index.html"));
             app.UseRouting();
-            app.UseCors();
+            app.UseCors("limitPolicy");
             // 先开启认证
             app.UseAuthentication();
             // 然后是授权中间件

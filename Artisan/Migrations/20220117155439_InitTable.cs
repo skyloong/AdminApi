@@ -8,13 +8,16 @@ namespace Artisan.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "sys_button",
+                name: "sys_buttons",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(36)", maxLength: 36, nullable: false, defaultValueSql: "newid()"),
                     MenuId = table.Column<string>(type: "nvarchar(36)", maxLength: 36, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     Url = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    FrontUrl = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false, defaultValue: ""),
+                    Action = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false, defaultValue: ""),
+                    Icon = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, defaultValue: ""),
                     Sort = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false, defaultValue: ""),
                     IsUse = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)1),
@@ -23,11 +26,11 @@ namespace Artisan.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_sys_button", x => x.Id);
+                    table.PrimaryKey("PK_sys_buttons", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "sys_menu",
+                name: "sys_menus",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(36)", maxLength: 36, nullable: false, defaultValueSql: "newid()"),
@@ -35,16 +38,18 @@ namespace Artisan.Migrations
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Icon = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Url = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Path = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     Sort = table.Column<int>(type: "int", nullable: false),
                     IsAuthorize = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)1, comment: "是否需要授权"),
                     IsUse = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)1),
+                    IsGroup = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)0, comment: "是否是父节点"),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: ""),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()"),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_sys_menu", x => x.Id);
+                    table.PrimaryKey("PK_sys_menus", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -92,10 +97,10 @@ namespace Artisan.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "sys_button");
+                name: "sys_buttons");
 
             migrationBuilder.DropTable(
-                name: "sys_menu");
+                name: "sys_menus");
 
             migrationBuilder.DropTable(
                 name: "sys_roles");

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NetCasbin;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
@@ -244,11 +245,10 @@ namespace Common.Helper
         /// <summary>
         /// 验证权限
         /// </summary>
-        /// <param name="roleId"></param>
-        /// <param name="url"></param>
-        /// <param name="method"></param>
+        /// <param name="userId"></param>
+        /// <param name="buttonId"></param>
         /// <returns></returns>
-        public bool Enforce(string roleId, string url)
+        public bool HasButtonForUser(string userId, string buttonId)
         {
             var options = new DbContextOptionsBuilder<CasbinDbContext<int>>()
                .UseSqlServer(_connection)
@@ -257,7 +257,59 @@ namespace Common.Helper
             {
                 var efCoreAdapter = new EFCoreAdapter<int>(context);
                 var e = new Enforcer(_confPath, efCoreAdapter);
-                return e.Enforce(roleId, url);
+                return e.Enforce(userId, buttonId);
+            }
+        }
+
+        public List<string> GetRolesForUser(string userId)
+        {
+            var options = new DbContextOptionsBuilder<CasbinDbContext<int>>()
+               .UseSqlServer(_connection)
+               .Options;
+            using (var context = new CasbinDbContext<int>(options))
+            {
+                var efCoreAdapter = new EFCoreAdapter<int>(context);
+                var e = new Enforcer(_confPath, efCoreAdapter);
+                return e.GetRolesForUser(userId);
+            }
+        }
+
+        public List<string> GetMenusForRole(string roleId)
+        {
+            var options = new DbContextOptionsBuilder<CasbinDbContext<int>>()
+               .UseSqlServer(_connection)
+               .Options;
+            using (var context = new CasbinDbContext<int>(options))
+            {
+                var efCoreAdapter = new EFCoreAdapter<int>(context);
+                var e = new Enforcer(_confPath, efCoreAdapter);
+                return e.GetPermissionsForUser(roleId).Aggregate((current, next) =>
+                {
+                    current.Add(next[0]);
+                    return current;
+                });
+            }
+        }
+
+        public List<string> GetMenusForUser(string userId)
+        {
+            var options = new DbContextOptionsBuilder<CasbinDbContext<int>>()
+               .UseSqlServer(_connection)
+               .Options;
+            using (var context = new CasbinDbContext<int>(options))
+            {
+                var efCoreAdapter = new EFCoreAdapter<int>(context);
+                var e = new Enforcer(_confPath, efCoreAdapter);
+                //TODO 怎么能直接获取到用户对应的菜单，而且不要按钮
+                var menusIds = new List<string>();
+                e.GetRolesForUser(userId).ForEach(item =>
+                {
+                    e.GetPermissionsForUser(item).ForEach(item =>
+                    {
+                        menusIds.Add(item[1]);
+                    });
+                });
+                return menusIds;
             }
         }
     }

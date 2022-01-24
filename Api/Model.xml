@@ -51,7 +51,7 @@
         </member>
         <member name="P:Model.Models.System.MenuButton.Action">
             <summary>
-            前后约定的，如Add、Delete等
+            前后约定的，如Post、Delete等
             </summary>
         </member>
         <member name="P:Model.Models.System.MenuButton.Icon">

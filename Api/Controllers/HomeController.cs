@@ -47,7 +47,7 @@ namespace Api.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public IActionResult Login(string usercode)
+        public IActionResult Login(string usercode, string password)
         {
             var userId = _usersService.Find(usercode)?.Id;
             return userId == null ? NotFound("未找到该用户") : Success(JwtHelper.IssueJwt(userId));

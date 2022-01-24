@@ -13,7 +13,7 @@ namespace Api.Controllers
     [ApiController]
     public class BaseController : Controller
     {
-        protected int UserId
+        protected string UserId
         {
             get
             {
@@ -30,17 +30,17 @@ namespace Api.Controllers
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
-        protected int GetUserId()
+        protected string GetUserId()
         {
             var claims = User.Claims;
             foreach (var claim in claims)
             {
                 if (claim.Type == TokenClaims.UserId)
                 {
-                    return claim.Value.ObjToInt();
+                    return claim.Value;
                 }
             }
-            return 0;
+            return "";
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]

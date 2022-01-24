@@ -18,6 +18,8 @@ namespace Common.TypeMapper
     {
         public bool IsPage { get; set; }
         public int PageSize { get; set; }
+        public int TotalCount { get; set; }
+        public int TotalPage { get; set; }
         public bool Checkbox { get; set; }
         public ICollection<ColumnInfo> Columns { get; set; }
     }

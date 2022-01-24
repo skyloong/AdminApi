@@ -11,7 +11,7 @@ namespace Artisan.Configuration
     {
         public void Configure(EntityTypeBuilder<MenuButton> builder)
         {
-            builder.ToTable("sys_button");
+            builder.ToTable("sys_buttons");
             builder.Property(a => a.Id)
                 .HasMaxLength(36)
                 .HasDefaultValueSql("newid()")
@@ -52,6 +52,11 @@ namespace Artisan.Configuration
                 .HasColumnType("tinyint")
                 .IsRequired()
                 .HasDefaultValue(1);
+            builder.Property(a => a.IsAuthorize)
+                .HasColumnType("tinyint")
+                .IsRequired()
+                .HasDefaultValue(1)
+                .HasComment("是否需要授权");
 
             builder.HasKey(a => a.Id);
         }

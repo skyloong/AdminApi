@@ -12,33 +12,33 @@ namespace Artisan.Seed.System
             using(var context = new ApplicationDbContext())
             {
                 var menus = new List<Menu>();
+                var groupId = Guid.NewGuid().ToString();
                 menus.Add(new Menu
                 {
-                    Id = "7B81DCC5-0320-4FB0-8F5D-F5DBB1F9FBCE",
-                    Name = "首页",
-                    Icon = "",
+                    Id = groupId,
+                    Name = "系统设置",
+                    Icon = "cog",
                     Url = "",
+                    Path = "",
+                    IsGroup = true
                 });
                 menus.Add(new Menu
                 {
-                    Id = "0109046E-BC29-4CCB-B972-DF51A6F85D39",
-                    Name = "用户",
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "菜单设置",
                     Icon = "",
-                    Url = "/test/index",
+                    Url = "/Menus/Index",
+                    Path = "/system/menu",
+                    ParentId = groupId
                 });
                 menus.Add(new Menu
                 {
-                    Id = "09CC2309-85AC-4D33-9A65-54DAC82C1384",
-                    Name = "班级",
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "按钮设置",
                     Icon = "",
-                    Url = "",
-                });
-                menus.Add(new Menu
-                {
-                    Id = "5E7242E6-C75E-4D05-B31D-800692B0C9BE",
-                    Name = "按钮列表",
-                    Icon = "",
-                    Url = "/home/getbuttons",
+                    Url = "/Buttons/Index",
+                    Path = "/system/button",
+                    ParentId = groupId
                 });
                 context.AddRange(menus);
                 context.SaveChanges();
