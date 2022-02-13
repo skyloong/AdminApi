@@ -7,15 +7,13 @@ using System.Text;
 
 namespace Artisan.Configuration
 {
-    public class RoleEntityTypeConfiguration : IEntityTypeConfiguration<Role>
+    class RoleMenuEntityTypeConfiguration : IEntityTypeConfiguration<RoleMenu>
     {
-        public void Configure(EntityTypeBuilder<Role> builder)
+        public void Configure(EntityTypeBuilder<RoleMenu> builder)
         {
-            builder.ToTable("sys_roles");
+            builder.ToTable("sys_role_menu");
             builder.Property(a => a.Id)
-                .HasMaxLength(36)
-                .IsRequired()
-                .HasDefaultValueSql("newid()");
+                .IsRequired();
             builder.Property(a => a.CreatedAt)
                 .IsRequired()
                 .HasDefaultValueSql("getdate()");
@@ -30,22 +28,16 @@ namespace Artisan.Configuration
                 .HasMaxLength(50)
                 .HasDefaultValue("");
 
-            builder.Property(a => a.Name)
-                .HasMaxLength(255)
+            builder.Property(a => a.RoleId)
+                .HasMaxLength(36)
                 .IsRequired();
-            builder.Property(a => a.Description)
-                .HasMaxLength(255)
-                .IsRequired()
-                .HasDefaultValue("");
-            builder.Property(a => a.IsUse)
-                .HasColumnType("tinyint")
-                .IsRequired()
-                .HasComment("1启用，0停用")
-                .HasDefaultValue(1);
-            builder.Property(a => a.Sort)
-                .HasComment("排序");
+            builder.Property(a => a.MenuId)
+                .HasMaxLength(36)
+                .IsRequired();
 
             builder.HasKey(a => a.Id);
+            builder.HasIndex(a => a.RoleId)
+                .IncludeProperties(a => a.MenuId);
         }
     }
 }

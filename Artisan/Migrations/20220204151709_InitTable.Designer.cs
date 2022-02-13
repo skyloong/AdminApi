@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Artisan.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220123080431_AddIsAuthorizeForButton")]
-    partial class AddIsAuthorizeForButton
+    [Migration("20220204151709_InitTable")]
+    partial class InitTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,6 +38,11 @@ namespace Artisan.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("DeptId")
                         .IsRequired()
@@ -106,6 +111,13 @@ namespace Artisan.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValue("");
+
                     b.HasKey("Id");
 
                     b.ToTable("sys_users");
@@ -123,6 +135,11 @@ namespace Artisan.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -152,6 +169,9 @@ namespace Artisan.Migrations
                         .HasColumnType("tinyint")
                         .HasDefaultValue((byte)1);
 
+                    b.Property<string>("MenuId")
+                        .HasColumnType("nvarchar(36)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -177,12 +197,21 @@ namespace Artisan.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValue("");
+
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MenuId");
 
                     b.ToTable("sys_menus");
                 });
@@ -206,6 +235,11 @@ namespace Artisan.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -257,6 +291,13 @@ namespace Artisan.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValue("");
+
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -279,6 +320,11 @@ namespace Artisan.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -307,9 +353,75 @@ namespace Artisan.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValue("");
+
                     b.HasKey("Id");
 
                     b.ToTable("sys_roles");
+                });
+
+            modelBuilder.Entity("Model.Models.System.RoleMenu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("MenuId")
+                        .IsRequired()
+                        .HasMaxLength(36)
+                        .HasColumnType("nvarchar(36)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasMaxLength(36)
+                        .HasColumnType("nvarchar(36)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasDefaultValue("");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId")
+                        .HasAnnotation("SqlServer:Include", new[] { "MenuId" });
+
+                    b.ToTable("sys_role_menu");
+                });
+
+            modelBuilder.Entity("Model.Models.System.Menu", b =>
+                {
+                    b.HasOne("Model.Models.System.Menu", null)
+                        .WithMany("Children")
+                        .HasForeignKey("MenuId");
+                });
+
+            modelBuilder.Entity("Model.Models.System.Menu", b =>
+                {
+                    b.Navigation("Children");
                 });
 #pragma warning restore 612, 618
         }

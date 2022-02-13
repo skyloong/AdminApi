@@ -36,8 +36,8 @@ namespace Services.System
 
         public List<Menu> GetMenusForUser(string userId)
         {
-            var menuIds = _casbinHelper.GetMenusForUser(userId);
-            return _sysMenusRepository.GetMenus(menuIds);
+            var roleIds = _casbinHelper.GetRolesForUser(userId);
+            return _sysMenusRepository.GetMenusByRole(roleIds);
         }
 
         public Menu Single(string menuId)

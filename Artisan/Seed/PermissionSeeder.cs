@@ -34,7 +34,6 @@ namespace Artisan.Seed
                 helper.AddButtonForRole(context.Roles.Single(a => a.Name == "管理员").Id, context.Buttons.Single(a => a.Url == "/Buttons/Delete").Id);
                 helper.AddButtonForRole(context.Roles.Single(a => a.Name == "管理员").Id, context.Buttons.Single(a => a.Url == "/Buttons/Search").Id);
                 helper.AddMenuForRole(context.Roles.Single(a => a.Name == "管理员").Id, context.Menus.Where(a => a.Name == "按钮设置").Select(a => a.Id).Single());
-                helper.AddMenuForRole(context.Roles.Single(a => a.Name == "管理员").Id, context.Menus.Where(a => a.Name == "系统设置").Select(a => a.Id).Single());
             }
         }
 
@@ -51,20 +50,21 @@ namespace Artisan.Seed
                 {
                     var efCoreAdapter = new EFCoreAdapter<int>(casbinContext);
                     var e = new Enforcer(_confPath, efCoreAdapter);
-                    Console.WriteLine(e.Enforce(context.AdminUsers.Single(a => a.Account == "user1").Id, context.Buttons.Single(a => a.Url == "/Menus/Search").Id));
-                    Console.WriteLine(e.HasPermissionForUser(context.Roles.Single(a => a.Name == "管理员").Id, context.Buttons.Single(a => a.Url == "/Menus/Search").Id));
-                    var fuck = e.GetPermissionsForUser(context.Roles.Single(a => a.Name == "管理员").Id).Aggregate((curr, next) =>
-                    {
-                        curr.Add(next[1]);
-                        return curr;
-                    });
-                    context.Menus.Where(a => fuck.Contains(a.Id)).ToList().ForEach(item =>
-                    {
-                        Console.WriteLine(item.Name);
-                    });
-                    Console.WriteLine(e.GetPermissionsForUser(context.Roles.Single(a => a.Name == "管理员").Id).Count);
+                    //Console.WriteLine(e.Enforce(context.AdminUsers.Single(a => a.Account == "user1").Id,
+                    //    context.Buttons.Single(a => a.Url == "/Menus/Search").Id));
+                    //Console.WriteLine(e.HasPermissionForUser(context.Roles.Single(a => a.Name == "管理员").Id, 
+                    //    context.Buttons.Single(a => a.Url == "/Menus/Search").Id));
+                    //var fuck = e.GetPermissionsForUser(context.Roles.Single(a => a.Name == "管理员").Id).Aggregate((curr, next) =>
+                    //{
+                    //    return curr;
+                    //});
+                    //var fuck1 = e.GetPermissionsForUser(context.Roles.Single(a => a.Name == "管理员").Id);
+                    //context.Menus.Where(a => fuck.Contains(a.Id)).ToList().ForEach(item =>
+                    //{
+                    //    Console.WriteLine(item.Name);
+                    //});
+                    //Console.WriteLine(e.GetPermissionsForUser(context.Roles.Single(a => a.Name == "管理员").Id).Count);
                 }
-                
             }
         }
     }

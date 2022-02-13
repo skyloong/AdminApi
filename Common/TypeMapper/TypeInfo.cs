@@ -77,7 +77,7 @@ namespace Common.TypeMapper
                         Align = columnArrtibute.Align,
                         Sortable = columnArrtibute.Sort,
                         IsExport = columnArrtibute.Exoort,
-                        ValueField = prop.Name
+                        Value = char.ToLower(prop.Name.First()) + prop.Name.Substring(1)
                     });
                 }
             }

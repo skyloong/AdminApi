@@ -18,10 +18,30 @@ namespace Model.Models.Common
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
+
         public string NewGUID()
         {
             Id = Guid.NewGuid().ToString();
             return Id;
         }
+    }
+
+    public class IntIDBaseModel
+    {
+        public IntIDBaseModel()
+        {
+            CreatedAt = UpdatedAt = DateTime.Now;
+        }
+
+        [SugarColumn(IsPrimaryKey = true)]
+        public int Id { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
     }
 }

@@ -22,6 +22,14 @@ namespace Artisan.Configuration
             builder.Property(a => a.UpdatedAt)
                 .IsRequired()
                 .HasDefaultValueSql("getdate()");
+            builder.Property(a => a.CreatedBy)
+                .IsRequired()
+                .HasMaxLength(50);
+            builder.Property(a => a.UpdatedBy)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasDefaultValue("");
+
             builder.Property(a => a.ParentId)
                 .HasMaxLength(36)
                 .IsRequired()

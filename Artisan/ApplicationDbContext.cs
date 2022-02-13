@@ -14,6 +14,7 @@ namespace Artisan
         public DbSet<Role> Roles { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<MenuButton> Buttons { get; set; }
+        public DbSet<RoleMenu> RoleMenus { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=127.0.0.1;Initial Catalog=Test;User ID=sa;Password=123456;Trusted_Connection=false;");

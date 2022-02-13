@@ -2,6 +2,7 @@
 using Common.TypeMapper;
 using Model.ExcelMapper.Export.System;
 using Model.Models.System;
+using Model.ViewModels.System;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,6 +22,9 @@ namespace Extensions.AutoMapper
 
             CreateMap<MenuButton, SysButtonDto>();
             CreateMap<Menu, SysMenuDto>();
+
+            CreateMap<Menu, NavDto>()
+                .ForMember(to => to.Text, opt => opt.MapFrom(source => source.Name));
         }
     }
 }

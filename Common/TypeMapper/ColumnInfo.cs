@@ -10,7 +10,7 @@ namespace Common.TypeMapper
         public int? Width { get; set; }
         public bool Sortable { get; set; }
         public string Align { get; set; }
-        public string ValueField { get; set; }
+        public string Value { get; set; }
         public bool IsExport { get; set; }
     }
 

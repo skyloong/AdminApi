@@ -22,7 +22,8 @@ namespace Artisan.Seed.System
                     FrontUrl = "",
                     Action = "post",
                     Icon = "plus-thick",
-                    MenuId = menu.Id
+                    MenuId = menu.Id,
+                    CreatedBy = "sysmanager"
                 });
                 buttons.Add(new MenuButton
                 {
@@ -31,7 +32,8 @@ namespace Artisan.Seed.System
                     Url = "/Menus/Edit",
                     Action = "put",
                     Icon = "pencil",
-                    MenuId = menu.Id
+                    MenuId = menu.Id,
+                    CreatedBy = "sysmanager"
                 });
                 buttons.Add(new MenuButton
                 {
@@ -40,7 +42,8 @@ namespace Artisan.Seed.System
                     Url = "/Menus/Delete",
                     Action = "delete",
                     Icon = "delete",
-                    MenuId = menu.Id
+                    MenuId = menu.Id,
+                    CreatedBy = "sysmanager"
                 });
                 buttons.Add(new MenuButton
                 {
@@ -49,7 +52,8 @@ namespace Artisan.Seed.System
                     Url = "/Menus/Search",
                     Action = "get",
                     Icon = "magnify",
-                    MenuId = menu.Id
+                    MenuId = menu.Id,
+                    CreatedBy = "sysmanager"
                 });
                 var button = context.Menus.Single(a => a.Name == "按钮设置");
                 buttons.Add(new MenuButton
@@ -60,7 +64,8 @@ namespace Artisan.Seed.System
                     FrontUrl = "",
                     Action = "post",
                     Icon = "plus-thick",
-                    MenuId = menu.Id
+                    MenuId = button.Id,
+                    CreatedBy = "sysmanager"
                 });
                 buttons.Add(new MenuButton
                 {
@@ -69,7 +74,8 @@ namespace Artisan.Seed.System
                     Url = "/Buttons/Edit",
                     Action = "put",
                     Icon = "pencil",
-                    MenuId = menu.Id
+                    MenuId = button.Id,
+                    CreatedBy = "sysmanager"
                 });
                 buttons.Add(new MenuButton
                 {
@@ -78,7 +84,8 @@ namespace Artisan.Seed.System
                     Url = "/Buttons/Delete",
                     Action = "delete",
                     Icon = "delete",
-                    MenuId = menu.Id
+                    MenuId = button.Id,
+                    CreatedBy = "sysmanager"
                 });
                 buttons.Add(new MenuButton
                 {
@@ -87,7 +94,8 @@ namespace Artisan.Seed.System
                     Url = "/Buttons/Search",
                     Action = "get",
                     Icon = "magnify",
-                    MenuId = menu.Id
+                    MenuId = button.Id,
+                    CreatedBy = "sysmanager"
                 });
                 context.Buttons.AddRange(buttons);
                 context.SaveChanges();

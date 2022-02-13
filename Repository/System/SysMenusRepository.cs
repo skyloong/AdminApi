@@ -6,6 +6,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using Model.ExcelMapper.Export.System;
+using SqlSugar;
 
 namespace Repository.System
 {
@@ -38,6 +39,16 @@ namespace Repository.System
         {
             return Db.Queryable<Menu>()
                 .Where(a => menuIds.Contains(a.Id))
+                .ToList();
+        }
+
+        public List<Menu> GetMenusByRole(ICollection<string> roleIds)
+        {
+            return Db.Queryable<Menu, RoleMenu>((a, b) => new JoinQueryInfos(
+                    JoinType.Left, a.Id == b.MenuId
+                ))
+                .Where((a, b) => roleIds.Contains(b.RoleId))
+                .Select((a, b) => a)
                 .ToList();
         }
 

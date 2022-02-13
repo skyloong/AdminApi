@@ -11,11 +11,12 @@ namespace Artisan
     {
         static void Main(string[] args)
         {
-            //new MenuSeeder().Run();
-            //new ButtonsSeeder().Run();
-            //new RoleSeeder().Run();
-            //new AdminUserSeeder().Run();
+            new MenuSeeder().Run();
+            new ButtonsSeeder().Run();
+            new RoleSeeder().Run();
+            new AdminUserSeeder().Run();
             new PermissionSeeder().Run();
+            new RoleMenuSeeder().Run();
         }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model.ExcelMapper.Export.System;
 using Model.Models.System;
+using Model.ViewModels.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace Api.Controllers.System
         [HttpGet]
         public IActionResult GetMenusForUser()
         {
-            var data = CommonHelper.ListToTree(_sysMenusService.GetMenusForUser(UserId));
+            var data = _mapper.Map<List<NavDto>>(CommonHelper.ListToTree(_sysMenusService.GetMenusForUser(UserId)));
             return Success(data);
         }
 

@@ -17,28 +17,31 @@ namespace Artisan.Seed.System
                 {
                     Id = groupId,
                     Name = "系统设置",
-                    Icon = "cog",
+                    Icon = "mdi-cog",
                     Url = "",
-                    Path = "",
-                    IsGroup = true
+                    Path = "/system",//vuetify展开对应菜单所需
+                    IsGroup = true,
+                    CreatedBy = "sysmanager"
                 });
                 menus.Add(new Menu
                 {
                     Id = Guid.NewGuid().ToString(),
                     Name = "菜单设置",
-                    Icon = "",
+                    Icon = "mdi-menu",
                     Url = "/Menus/Index",
                     Path = "/system/menu",
-                    ParentId = groupId
+                    ParentId = groupId,
+                    CreatedBy = "sysmanager"
                 });
                 menus.Add(new Menu
                 {
                     Id = Guid.NewGuid().ToString(),
                     Name = "按钮设置",
-                    Icon = "",
+                    Icon = "mdi-gesture-tap-button",
                     Url = "/Buttons/Index",
                     Path = "/system/button",
-                    ParentId = groupId
+                    ParentId = groupId,
+                    CreatedBy = "sysmanager"
                 });
                 context.AddRange(menus);
                 context.SaveChanges();

@@ -19,6 +19,7 @@ namespace Artisan.Seed.System
                     Account = "sysmanager",
                     Name = "管理员",
                     Password = "123456",
+                    CreatedBy = "sysmanager"
                 });
                 users.Add(new AdminUser
                 {
@@ -26,6 +27,7 @@ namespace Artisan.Seed.System
                     Account = "user1",
                     Name = "派大星",
                     Password = "123456",
+                    CreatedBy = "sysmanager"
                 });
                 users.Add(new AdminUser
                 {
@@ -33,6 +35,7 @@ namespace Artisan.Seed.System
                     Account = "user2",
                     Name = "海绵宝宝",
                     Password = "123456",
+                    CreatedBy = "sysmanager"
                 });
                 context.AdminUsers.AddRange(users);
                 context.SaveChanges();
